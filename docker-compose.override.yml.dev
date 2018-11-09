@@ -1,10 +1,10 @@
 version: '2'
 
 services:
-  mailcatcher:
+  mail:
     image: schickling/mailcatcher:latest
     ports:
-    - 11080:1080
+      - 11080:1080
 
   sql:
     environment:
