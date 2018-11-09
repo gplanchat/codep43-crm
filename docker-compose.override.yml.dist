@@ -18,7 +18,9 @@ services:
       - ./.docker/nginx@1.15/config/vhost-prod.conf:/etc/nginx/conf.d/100-default.conf
 
   ws:
-    command: ["bin/console", "gos:server", "--env=prod"]
+    command: ["bin/console", "gos:websocket:server", "--env=prod", "codep"]
+    ports:
+      - 8080:8080
 
   mq:
     command: ["bin/console", "oro:message-queue:consume", "--env=prod", "-vv"]
