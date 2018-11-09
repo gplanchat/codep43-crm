@@ -18,7 +18,7 @@ services:
       - ./.docker/nginx@1.15/config/vhost-prod.conf:/etc/nginx/conf.d/100-default.conf
 
   ws:
-    command: ["bin/console", "clank:server", "--env=prod"]
+    command: ["bin/console", "gos:server", "--env=prod"]
 
   mq:
     command: ["bin/console", "oro:message-queue:consume", "--env=prod", "-vv"]

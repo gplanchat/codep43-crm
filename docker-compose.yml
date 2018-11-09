@@ -31,7 +31,6 @@ services:
     volumes:
       - ./.docker/php@7.1/cli/config/memory.ini:/usr/local/etc/php/conf.d/memory.ini:ro
       - ./:/var/www/html
-    command: ["bin/console", "clank:server", "--env=prod"]
 
   mq:
     build:
@@ -40,7 +39,6 @@ services:
     volumes:
       - ./.docker/php@7.1/cli/config/memory.ini:/usr/local/etc/php/conf.d/memory.ini:ro
       - ./:/var/www/html
-    command: ["bin/console", "oro:message-queue:consume", "--env=prod", "-vv"]
 
   cli:
     build:
