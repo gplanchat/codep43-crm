@@ -1,6 +1,10 @@
 version: '2'
 
 services:
+  sql:
+    environment:
+      POSTGRES_PASSWORD: "password"
+
   http:
     ports:
       - 8000:80

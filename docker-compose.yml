@@ -4,9 +4,8 @@ services:
   sql:
     image: postgres:9.6-alpine
     environment:
-      - "POSTGRES_USER=payum"
-      - "POSTGRES_DB=payum"
-      - "POSTGRES_PASSWORD=password"
+      POSTGRES_USER: "codep"
+      POSTGRES_DB: "codep"
     volumes:
       - ./.docker/postgres@9.6/sql/uuid-ossp.sql:/docker-entrypoint-initdb.d/00-uuid-ossp.sql:ro
 

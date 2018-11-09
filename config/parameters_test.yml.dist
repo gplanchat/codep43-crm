@@ -1,10 +1,10 @@
 parameters:
-    database_driver:        pdo_mysql
-    database_host:          127.0.0.1
+    database_driver:        pdo_pgsql
+    database_host:          sql
     database_port:          ~
-    database_name:          oro_crm_test
-    database_user:          root
-    database_password:      ~
+    database_name:          codep
+    database_user:          codep
+    database_password:      password
     database_driver_options: []
 
     mailer_transport:       smtp
