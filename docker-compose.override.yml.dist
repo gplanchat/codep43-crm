@@ -3,7 +3,7 @@ version: '2'
 services:
   mail:
     image: namshi/smtp:latest
-    environments:
+    environment:
       RELAY_NETWORKS: ":192.168.0.0/24"
       PORT: 1025
 
