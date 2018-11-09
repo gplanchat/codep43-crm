@@ -1,15 +1,8 @@
 version: '2'
 
 services:
-  mailcatcher:
-    ports:
-    - 11080:1080
-    - 11025:1025
-
-  sql:
-    ports:
-      - 15432:5432
-
   http:
     ports:
       - 8000:80
+    volumes:
+      - ./.docker/nginx@1.15/config/vhost-prod.conf:/etc/nginx/conf.d/100-default.conf

@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+  mailcatcher:
+    image: schickling/mailcatcher:latest
+    ports:
+    - 11080:1080
+
+  sql:
+    ports:
+      - 15432:5432
+
+  http:
+    ports:
+      - 8000:80
+    volumes:
+      - ./.docker/nginx@1.15/config/vhost-dev.conf:/etc/nginx/conf.d/100-default.conf

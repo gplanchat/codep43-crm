@@ -1,11 +1,6 @@
 version: '2'
 
 services:
-  mailcatcher:
-    image: schickling/mailcatcher:latest
-    ports:
-      - 11080:1080
-
   sql:
     image: postgres:9.6-alpine
     environment:
@@ -17,11 +12,8 @@ services:
 
   http:
     image: nginx:alpine
-    ports:
-      - 8000:80
     volumes:
       - ./.docker/nginx@1.15/config/options.conf:/etc/nginx/conf.d/000-options.conf
-      - ./.docker/nginx@1.15/config/vhost.conf:/etc/nginx/conf.d/100-default.conf
       - ./:/var/www/html
 
   fpm:
