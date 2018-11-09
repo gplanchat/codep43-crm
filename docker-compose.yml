@@ -1,0 +1,42 @@
+version: '2'
+
+services:
+  mailcatcher:
+    image: schickling/mailcatcher:latest
+    ports:
+      - 11080:1080
+
+  sql:
+    image: postgres:9.6-alpine
+    environment:
+      - "POSTGRES_USER=payum"
+      - "POSTGRES_DB=payum"
+      - "POSTGRES_PASSWORD=password"
+    volumes:
+      - ./.docker/postgres@9.6/sql/uuid-ossp.sql:/docker-entrypoint-initdb.d/00-uuid-ossp.sql:ro
+
+  http:
+    image: nginx:alpine
+    ports:
+      - 8000:80
+    volumes:
+      - ./.docker/nginx@1.15/config/options.conf:/etc/nginx/conf.d/000-options.conf
+      - ./.docker/nginx@1.15/config/vhost.conf:/etc/nginx/conf.d/100-default.conf
+      - ./:/var/www/html
+
+  fpm:
+    build:
+      context: .docker/php@7.1/fpm
+    user: docker:docker
+    volumes:
+      - ./.docker/php@7.1/fpm/config/pool.ini:/usr/local/etc/php/pool.d/default.ini:ro
+      - ./.docker/php@7.1/fpm/config/memory.ini:/usr/local/etc/php/conf.d/memory.ini:ro
+      - ./:/var/www/html
+
+  cli:
+    build:
+      context: .docker/php@7.1/cli
+    user: docker:docker
+    volumes:
+      - ./.docker/php@7.1/cli/config/memory.ini:/usr/local/etc/php/conf.d/memory.ini:ro
+      - ./:/var/www/html

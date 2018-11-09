@@ -1,0 +1,15 @@
+version: '2'
+
+services:
+  mailcatcher:
+    ports:
+    - 11080:1080
+    - 11025:1025
+
+  sql:
+    ports:
+      - 15432:5432
+
+  http:
+    ports:
+      - 8000:80
