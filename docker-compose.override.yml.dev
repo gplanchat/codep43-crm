@@ -17,3 +17,9 @@ services:
       - 8000:80
     volumes:
       - ./.docker/nginx@1.15/config/vhost-dev.conf:/etc/nginx/conf.d/100-default.conf
+
+  ws:
+    command: ["bin/console", "clank:server", "--env=dev"]
+
+  mq:
+    command: ["bin/console", "oro:message-queue:consume", "--env=dev", "-vv"]

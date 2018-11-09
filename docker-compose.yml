@@ -24,6 +24,24 @@ services:
       - ./.docker/php@7.1/fpm/config/memory.ini:/usr/local/etc/php/conf.d/memory.ini:ro
       - ./:/var/www/html
 
+  ws:
+    build:
+      context: .docker/php@7.1/cli
+    user: docker:docker
+    volumes:
+      - ./.docker/php@7.1/cli/config/memory.ini:/usr/local/etc/php/conf.d/memory.ini:ro
+      - ./:/var/www/html
+    command: ["bin/console", "clank:server", "--env=prod"]
+
+  mq:
+    build:
+      context: .docker/php@7.1/cli
+    user: docker:docker
+    volumes:
+      - ./.docker/php@7.1/cli/config/memory.ini:/usr/local/etc/php/conf.d/memory.ini:ro
+      - ./:/var/www/html
+    command: ["bin/console", "oro:message-queue:consume", "--env=prod", "-vv"]
+
   cli:
     build:
       context: .docker/php@7.1/cli
