@@ -159,7 +159,15 @@ oro_help:
             uri: Platform/OroDashboardBundle
 
 oro_theme:
-    active_theme: oro
+    active_theme: codep43
+
+    themes:
+        codep43:
+            styles:
+                - codep43/css/main.css
+            label: CODEP 43
+            icon: favicon.ico
+            logo: codep43/images/logo.png
 
 oro_message_queue:
     transport:
